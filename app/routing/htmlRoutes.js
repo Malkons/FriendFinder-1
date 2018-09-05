@@ -10,8 +10,7 @@ var path = require("path");
 
 module.exports = function(app) {
   // HTML GET Requests
-  // This code handles when users "visit" a page.
-  // In each of the below cases the user is shown an HTML page of content
+  // Code handles when users "visit" a page.
   // ---------------------------------------------------------------------------
 
   app.get("/home", function(req, res) {
@@ -19,7 +18,7 @@ module.exports = function(app) {
   });
 
   app.get("/survey", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/reserve.html"));
+    res.sendFile(path.join(__dirname, "../public/survey.html"));
   });
 
   // If no matching route is found then default to home

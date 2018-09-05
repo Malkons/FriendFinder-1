@@ -1,6 +1,6 @@
 // ===============================================================================
 // LOAD DATA
-// Link our routes to our data sources.
+// Links our routes to our data sources.
 // ===============================================================================
 
 var friends = require("../data/friends");
@@ -9,34 +9,65 @@ var friends = require("../data/friends");
 // ROUTING
 // ===============================================================================
 
-module.exports = function(app) {
+module.exports = function (app) {
   // API GET Requests
   // Code handles when users "visit" a page.
   // ---------------------------------------------------------------------------
 
-  app.get("/api/friendfinder", function(req, res) {
+  app.get("/api/friendfinder", function (req, res) {
     res.json(friends);
   });
 
   // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
-  // In each of the below cases, when a user submits form data (a JSON object)
-  // ...the JSON is pushed to the appropriate JavaScript array
-  // (ex. User fills out a reservation request... this data is then sent to the server...
-  // Then the server saves the data to the friends array)
-  // ---------------------------------------------------------------------------
+  // Code handles a user's submit from a form and submits data to the server (as a JSON object).
 
-  app.post("/api/friendfinder", function(req, res) {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body-parser middleware
-    if (friends.length < 5) {
-      friends.push(req.body);
-      res.json(true);
+  app.post("/api/friendfinder", function (req, res) {
+    friends.push(req.body);
+    res.json(true);
+
+    // Code for best friend matching
+
+    //Object to hold the best match
+    var bestMatch = {
+      name: "",
+      photo: "",
+      friendDifference: 50
+    };
+
+    // Store the body of the request as a variable
+    var userData = req.body;
+
+    // Per instructions, create variable called totalDifference and set it 0 initially
+    var totalDifference = 0;
+
+    // Loop through all the friend possibilities in the database. 
+    for (var i = 0; i < friends.length; i++) {
+
+      console.log(friends[i].name);
+      //totalDifference = 0;
+
+      // Loop through all the scores of each friend
+      for (var j = 0; j < friends[i].scores[j]; j++) {
+
+        // We calculate the difference between the scores and sum them into the totalDifference
+        totalDifference += Math.abs(parseInt(userData.scores[j]) - parseInt(friends[i].scores[j]));
+
+        // If the sum of differences is less then the differences of the current "best match"
+        if (totalDifference <= bestMatch.friendDifference) {
+
+          // Reset the bestMatch as the new modal best friend 
+          bestMatch.name = friends[i].name;
+          bestMatch.photo = friends[i].photo;
+          bestMatch.friendDifference = totalDifference; // set the new difference as the proverbial "best friend benchmark"
+        }
+      }
     }
-    else {
-      waitListData.push(req.body);
-      res.json(false);
-    }
+
+    // Save the userData to the Database
+    friends.push(userData);
+
+    // Return a JSON with the user's bestMatch that can be used later
+    res.json(bestMatch);
+
   });
 };
