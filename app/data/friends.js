@@ -25,7 +25,6 @@ var friendArray = [
     scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
   }
 
-
 ];
 
 // Export the array making accessible to the user if they want to know about other people. 

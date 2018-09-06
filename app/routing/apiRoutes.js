@@ -23,7 +23,6 @@ module.exports = function (app) {
 
   app.post("/api/friendfinder", function (req, res) {
     friends.push(req.body);
-    res.json(true);
 
     // Code for best friend matching
 
@@ -59,6 +58,7 @@ module.exports = function (app) {
           bestMatch.name = friends[i].name;
           bestMatch.photo = friends[i].photo;
           bestMatch.friendDifference = totalDifference; // set the new difference as the proverbial "best friend benchmark"
+          console.log(bestMatch);
         }
       }
     }
