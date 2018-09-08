@@ -5,6 +5,10 @@ A compatibility-based "FriendFinder" application -- basically a dating app. This
 
 
 ## Setup
+
+### To use the deployed version of the application use the following link:
+## [FriendFinder](https://friend-finder-apleek3.herokuapp.com/)
+
 ### To use this application locally:
 1) If you haven't already clone this repository to your computer
 2) If you haven't already installed node navigate to their site and install the version noted as "Recommended for Most Users": https://nodejs.org/en/
@@ -26,6 +30,5 @@ A compatibility-based "FriendFinder" application -- basically a dating app. This
 
 ![Friend Finder](./assets/images/FriendFinderCmd.png)
 
-### To use the deployed version of the application use the following link:
-[FriendFinder](https://friend-finder-apleek3.herokuapp.com/)
+
 
