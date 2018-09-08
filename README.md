@@ -24,7 +24,7 @@ A compatibility-based "FriendFinder" application -- basically a dating app. This
     App listening on port: 8080
     _
 
-![Friend Finder](C./assets/images/FriendFinderCmd)
+![Friend Finder](./assets/images/FriendFinderCmd.png)
 
 ### To use the deployed version of the application use the following link:
 [FriendFinder](https://friend-finder-apleek3.herokuapp.com/)
